@@ -5,17 +5,21 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
+/*
+ * this Heatmap tool was originally developed by: Garen O'Donnell
+ * Date Created: 04/10/2019
+ * Modified by: Hadi Mehrpouya
+ * Date of modification: 14/10/2020
+ * Modified by: Nikola Drousie
+ * Date of modification: 07/11/2021
+ */
 public class Heatmap_BombDrop : MonoBehaviour
 {
     private static List<Vector3> m_deathPositions = new List<Vector3>();
     private static GameObject heatmapPrefab;
     private static string m_path = "Assets/Resources/Text/";
 
-    void Start()
-    {
-
-    }
+#if UNITY_EDITOR
 
     [MenuItem("Tools/Heatmap/Generate")]
     static void ReadDeathData()
@@ -64,4 +68,7 @@ public class Heatmap_BombDrop : MonoBehaviour
                 GameObject.DestroyImmediate(hMap_Spheres[i]);
             }
     }
+
+#endif
+
 }
