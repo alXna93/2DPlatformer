@@ -2,3 +2,51 @@
 35.44045,-2.063616,1
 42.62133,-1.775,1
 29.79446,-1.775,1
+7.469762,-0.575,1
+7.473959,-0.575,1
+User entered zone: secretRoom
+15.32292,-0.575,1
+User entered zone: difficult Part
+User entered zone: difficult Part
+User entered zone: difficult Part
+User entered zone: difficult Part
+29.40899,-1.752972,1
+User entered zone: difficult Part
+User entered zone: difficult Part
+User entered zone: difficult Part
+47.6967,-5.375001,1
+User entered zone: difficult Part
+User entered zone: difficult Part
+User entered zone: difficult Part
+User entered zone: difficult Part
+User entered zone: GameZones
+User entered zone: GameZones
+User entered zone: difficult Part
+User entered zone: difficult Part
+User entered zone: difficult Part
+User entered zone: difficult Part
+User entered zone: difficult Part
+User entered zone: Secret room 1
+User entered zone: Secret room 1
+User entered zone: difficult Part
+User entered zone: difficultPart
+User entered zone: difficultPart
+User entered zone: difficultPart
+User entered zone: difficultPart
+User entered zone: difficultPart
+User entered zone: difficultPart
+User entered zone: difficultPart
+User entered zone: difficultPart
+User entered zone: difficultPart
+User entered zone: difficultPart
+14.566,-1.980947,1
+User entered zone: difficultPart
+User entered zone: difficultPart
+User entered zone: difficultPart
+User entered zone: difficultPart
+User entered zone: difficultPart
+User entered zone: difficultPart
+User entered zone: difficultPart
+User entered zone: difficultPart
+49.59715,-5.375,1
+User entered zone: difficultPart

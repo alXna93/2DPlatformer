@@ -37,11 +37,28 @@ public static class DataRecorder {
             sw.WriteLine(lineToAdd);
             sw.Close();
         }
-#if UNITY_EDITOR
-        ////Re-import the file to update the reference in the editor
-        AssetDatabase.ImportAsset(filePath+".txt");
-#endif
-        TextAsset asset = Resources.Load<TextAsset>(filePath + ".txt");
+//#if UNITY_EDITOR
+//        ////Re-import the file to update the reference in the editor
+//        AssetDatabase.ImportAsset(filePath+".txt");
+//#endif
+//        TextAsset asset = Resources.Load<TextAsset>(filePath + ".txt");
+        ////Print the text from the file
+        result = true;//If we get to this part of our code, this means things went ok, so we return true. 
+        return result;
+    }
+
+    public static bool RecordEnteringZone(string whichZone)
+    {
+        string filePath = GetPath() + SceneManager.GetActiveScene().name;
+        bool result = false;
+        string lineToAdd = "User entered zone: " + whichZone;
+        Debug.Log(lineToAdd);
+        using (StreamWriter sw = File.AppendText(filePath + ".txt")) //This line will try to open the file and if it doesn't exist, it will make it!
+        {
+            //Write death position vector to our text file as a new line
+            sw.WriteLine(lineToAdd);
+            sw.Close();
+        }
         ////Print the text from the file
         result = true;//If we get to this part of our code, this means things went ok, so we return true. 
         return result;
@@ -59,11 +76,11 @@ public static class DataRecorder {
             sw.WriteLine(lineToAdd);
             sw.Close();
         }
-#if UNITY_EDITOR
-        ////Re-import the file to update the reference in the editor
-        AssetDatabase.ImportAsset(filePath);
-#endif
-        TextAsset asset = Resources.Load<TextAsset>(filePath + ".txt");
+//#if UNITY_EDITOR
+//        ////Re-import the file to update the reference in the editor
+//        AssetDatabase.ImportAsset(filePath);
+//#endif
+//        TextAsset asset = Resources.Load<TextAsset>(filePath + ".txt");
         ////Print the text from the file
         result = true;//If we get to this part of our code, this means things went ok, so we return true. 
         return result;
