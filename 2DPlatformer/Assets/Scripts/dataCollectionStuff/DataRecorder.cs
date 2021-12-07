@@ -27,7 +27,7 @@ public static class DataRecorder {
 
     public static bool recordDeathPosition3D(Vector3 _pos)
     {
-        string filePath = GetPath() + SceneManager.GetActiveScene().name;
+        string filePath = GetPath() + "DeathPosition_" + SceneManager.GetActiveScene().name;
         bool result = false;
         string lineToAdd= _pos.x + "," + _pos.y + "," + _pos.z;
         Debug.Log(lineToAdd);
@@ -47,9 +47,35 @@ public static class DataRecorder {
         return result;
     }
 
+    public static bool recordPickupPosition3D(Vector3 _pos, int pickupCount)
+    {
+        string filePath = GetPath() + "Pickups_" + SceneManager.GetActiveScene().name;
+        bool result = false;
+        string lineToAdd = _pos.x + "," + _pos.y + "," + _pos.z + ", Gems picked up so far: " + pickupCount;
+        Debug.Log(lineToAdd);
+        using (StreamWriter sw = File.AppendText(filePath + ".txt")) //This line will try to open the file and if it doesn't exist, it will make it!
+        {
+            //Write death position vector to our text file as a new line
+            sw.WriteLine(lineToAdd);
+            sw.Close();
+        }
+
+        /*
+        #if UNITY_EDITOR
+        ////Re-import the file to update the reference in the editor
+        AssetDatabase.ImportAsset(filePath+".txt");
+        TextAsset asset = Resources.Load<TextAsset>(filePath + ".txt");
+        #endif
+        */
+
+        ////Print the text from the file
+        result = true;//If we get to this part of our code, this means things went ok, so we return true. 
+        return result;
+    }
+
     public static bool RecordEnteringZone(string whichZone)
     {
-        string filePath = GetPath() + SceneManager.GetActiveScene().name;
+        string filePath = GetPath() + "Zones_" + SceneManager.GetActiveScene().name;
         bool result = false;
         string lineToAdd = "User entered zone: " + whichZone;
         Debug.Log(lineToAdd);
@@ -67,7 +93,7 @@ public static class DataRecorder {
 
     public static bool recordDeathPosition2D(Vector2 _pos)
     {
-        string filePath = GetPath() + SceneManager.GetActiveScene().name + ".txt";
+        string filePath = GetPath() + SceneManager.GetActiveScene().name + ".txt";       
         bool result = false;
         string lineToAdd = _pos.x + "," + _pos.y;
         using (StreamWriter sw = File.AppendText(GetPath() + ".txt")) //This line will try to open the file and if it doesn't exist, if will make it!
@@ -76,13 +102,16 @@ public static class DataRecorder {
             sw.WriteLine(lineToAdd);
             sw.Close();
         }
-//#if UNITY_EDITOR
-//        ////Re-import the file to update the reference in the editor
-//        AssetDatabase.ImportAsset(filePath);
-//#endif
-//        TextAsset asset = Resources.Load<TextAsset>(filePath + ".txt");
-        ////Print the text from the file
-        result = true;//If we get to this part of our code, this means things went ok, so we return true. 
+
+        /*
+        #if UNITY_EDITOR
+        ////Re-import the file to update the reference in the editor
+        AssetDatabase.ImportAsset(filePath);
+        TextAsset asset = Resources.Load<TextAsset>(filePath + ".txt");
+        #endif
+        */
+            ////Print the text from the file
+            result = true;//If we get to this part of our code, this means things went ok, so we return true. 
         return result;
     }
 

@@ -11,11 +11,15 @@ public class zneScrip : MonoBehaviour
     {
         
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        DataRecorder.RecordEnteringZone(gameObject.name); // records the name of the zone on a text file that the player enters 
+        if (collider.gameObject.CompareTag("Player"))
+        {
+            DataRecorder.RecordEnteringZone(gameObject.name); // records the name of the zone on a text file that the player enters 
+
+            Analytics.CustomEvent("Entered zone", new Dictionary<string, object> { { "Zone name", gameObject.name } }); // sends the data to unity analytics
+        }
         
-        Analytics.CustomEvent("Entered zone",   new Dictionary<string,object> { { "Zone name", gameObject.name }}); // sends the data to unity analytics
     }
 
 

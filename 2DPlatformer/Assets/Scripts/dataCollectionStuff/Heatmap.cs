@@ -21,11 +21,11 @@ public class Heatmap_BombDrop : MonoBehaviour
 
 #if UNITY_EDITOR
 
-    [MenuItem("Tools/Heatmap/Generate")]
+    [MenuItem("Tools/Heatmap/Deaths")]
     static void ReadDeathData()
     {
         m_deathPositions.Clear();
-        string filePath = m_path + SceneManager.GetActiveScene().name ; //Creates and uses a file per scence. This application uses your scene name to generate death textfile. 
+        string filePath = m_path + "DeathPosition_" + SceneManager.GetActiveScene().name ; //Creates and uses a file per scence. This application uses your scene name to generate death textfile. 
         heatmapPrefab = (GameObject)Resources.Load("prefabs/deathPrefab", typeof(GameObject));//Prefab to use to render death positions.
 
         //Read the text from directly from the txt file
@@ -40,12 +40,33 @@ public class Heatmap_BombDrop : MonoBehaviour
        renderDeathData();
     }
 
-    
+
+    [MenuItem("Tools/Heatmap/Pickups")]
+    static void ReadPickupData()
+    {
+        m_deathPositions.Clear();
+        string filePath = m_path + "Pickups_" + SceneManager.GetActiveScene().name; //Creates and uses a file per scence. This application uses your scene name to generate death textfile. 
+        heatmapPrefab = (GameObject)Resources.Load("prefabs/pickupPrefab", typeof(GameObject));//Prefab to use to render death positions.
+
+        //Read the text from directly from the txt file
+        string fullPath = filePath + ".txt";
+        StreamReader reader = new StreamReader(fullPath);
+        string deathCoords = "";
+        while ((deathCoords = reader.ReadLine()) != null)
+        {//going through the text file line by line and adding it to a list of vectors.
+            m_deathPositions.Add(stringToVec(deathCoords));
+            deathCoords = "";
+        }
+        reader.Close();
+        renderDeathData();
+    }
+
+
     public static Vector3 stringToVec(string _st)
     {
         Vector3 result = new Vector3();
         string[] vals = _st.Split(',');
-        if (vals.Length == 3)
+        if (vals.Length >= 3)
         {
             result.Set(float.Parse(vals[0]), float.Parse(vals[1]), float.Parse(vals[2]));
         }

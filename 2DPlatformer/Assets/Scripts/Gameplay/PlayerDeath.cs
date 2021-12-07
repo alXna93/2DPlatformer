@@ -31,6 +31,8 @@ namespace Platformer.Gameplay
                 player.animator.SetTrigger("hurt");
                 player.animator.SetBool("dead", true);
                 Simulation.Schedule<PlayerSpawn>(2);
+
+                Debug.Log("Hello");
                 DataRecorder.recordDeathPosition3D(player.transform.position);
             }
         }

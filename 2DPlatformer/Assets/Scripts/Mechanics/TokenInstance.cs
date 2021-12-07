@@ -13,6 +13,8 @@ namespace Platformer.Mechanics
     [RequireComponent(typeof(Collider2D))]
     public class TokenInstance : MonoBehaviour
     {
+        static int gamePickupCount = 0;
+
         public AudioClip tokenCollectAudio;
         [Tooltip("If true, animation will start at a random position in the sequence.")]
         public bool randomAnimationStartTime = false;
@@ -53,6 +55,12 @@ namespace Platformer.Mechanics
             sprites = collectedAnimation;
             if (controller != null)
                 collected = true;
+
+            //Record pickup
+            gamePickupCount += 1;
+            DataRecorder.recordPickupPosition3D(gameObject.transform.position, gamePickupCount);
+
+
             //send an event into the gameplay system to perform some behaviour.
             var ev = Schedule<PlayerTokenCollision>();
             ev.token = this;
